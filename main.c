@@ -24,13 +24,14 @@ int main() {
             printf("Strada Petre Ispirescu - Copac cazut\n");
             system("pause");
         } else if (choice == 2) {
-            int raport;
+            char raport[20];
             printf("Adaugare raport: \n");
-            scanf("%d", &raport);
+            scanf("%s", &raport);
             printf("Raportul a fost adaugat cu succes.\n");
             system("pause");
 
         }
+
          else if (choice == 3){
             char raport;
             printf("Tipul incidentului:");
@@ -39,7 +40,7 @@ int main() {
          }
          else if(choice == 4){
             char strada;
-            printf("Numele strazii");
+            printf("Numele strazii:");
             scanf("%c\n",strada);
             system("pause");
          }
