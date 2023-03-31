@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main()
 {
@@ -11,24 +12,56 @@ int main()
     int count = 0;
 
     // Lista de orase a  aplicatiei
-    char *orase[100];
+    char *orase[3];
     int nrOrase = 3;
     orase[0] = "Timisoara";
     orase[1] = "Bucuresti";
     orase[2] = "Craiova";
 
     // lista de tipuri de incidente
-    char *tipIncident[100];
+    char *tipIncident[3];
     int nrIncidente = 3;
     tipIncident[0] = "Gaura in asfalt";
     tipIncident[1] = "Bec Defect";
     tipIncident[2] = "Cablu cazut pe carosabil";
 
     // date de test
+    //aici o sa facem citirea evenimentelor existente in fisier
+     FILE* file = fopen("incidente.txt", "r");\
+
+     char *currentline;
+
+    currentline = (char *)malloc(50 * sizeof(char));
+     size_t len=0;
+     int indiceLinie=0;
+     while (  fgets(currentline,50, file) != NULL) {
+
+
+        if (indiceLinie%3==0)
+        {
+            orasIncidente[indiceLinie/3]= atoi(currentline);
+        }
+        if (indiceLinie%3==1)
+        {
+            strazi[indiceLinie/3] = currentline;
+        }
+        if (indiceLinie%3==2)
+        {
+            incidente[indiceLinie/3]= atoi(currentline);
+        }
+        indiceLinie++;
+        currentline = (char *)malloc(50 * sizeof(char));
+
+    }
+    count=indiceLinie-1/3;
+
+    fclose(file);
+
+    /*
     orasIncidente[0] = 0;
     strazi[0] = "Atomului";
     incidente[0] = 0;
-    count = 1;
+    count = 1;*/
 
     while (1 == 1)
     {
@@ -84,7 +117,9 @@ int main()
                 scanf("%d", &_orasIncident);
             } while (_orasIncident < 1 || _orasIncident > nrOrase + 1);
             // citire strada
+
             printf("Adaugare incident:[2/3] - Strada: ");
+
             char temp;
             scanf("%c", &temp); // temp statement to clear buffer
             char *zona;

@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1679323489 source:c:\users\giuroriu alexandru\desktop\proiect uvt\pp\pp\main.c
+1679696736 source:c:\users\giuroriu alexandru\desktop\proiect uvt\pp\pp\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 
