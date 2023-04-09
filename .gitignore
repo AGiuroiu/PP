@@ -4,3 +4,5 @@ bin/Debug/PP.exe
 obj/Debug/main.o
 PP.depend
 PP.layout
+/obj
+/bin
