@@ -71,7 +71,7 @@ int main()
         printf("1. Vizualizeaza rapoarte\n");
         printf("2. Adauga raport\n");
         printf("3. Filtrare rapoarte dupa incident\n");
-        printf("4. Filtrare rapoarte dupa strada\n");
+        printf("4. Filtrare rapoarte dupa oras\n");
 
         int choice;
         do
@@ -197,9 +197,33 @@ int main()
         }
         else if (choice == 4)
         {
-            char strada[100];
-            printf("Numele strazii:");
-            scanf("%s", strada);
+            printf("Orasul:\n");
+            int oras;
+            for (int i = 0; i < nrOrase; i++)
+            {
+                printf("%d - %s \n", i + 1, orase[i]);
+            }
+
+            do
+            {
+                printf("Introdu varianta dorita: ");
+                scanf("%d", &oras);
+            } while (oras < 1 || oras > nrOrase + 1);
+             printf("Incidente descoperite: \n");
+            for (int i = 0; i < count; i++)
+            {
+                if(incidente[i]==(oras-1)){
+                    char index[10];
+                    sprintf(index, "%d", i + 1);
+                    char descOras[1000] = "";
+                    strcat(descOras, index);
+                    strcat(descOras, "-");
+                    strcat(descOras, strazi[i]);
+                    strcat(descOras, ", ");
+                    strcat(descOras,tipIncident[incidente[i]]);
+                    printf("%s\n", descOras);
+                }
+            }
             system("pause");
         }
         choice = -1;
