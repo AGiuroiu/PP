@@ -43,6 +43,7 @@ int main()
         }
         if (indiceLinie%3==1)
         {
+            currentline[strcspn(currentline, "\r\n")] = 0;
             strazi[indiceLinie/3] = currentline;
         }
         if (indiceLinie%3==2)
@@ -53,7 +54,7 @@ int main()
         currentline = (char *)malloc(50 * sizeof(char));
 
     }
-    count=indiceLinie-1/3;
+    count=(indiceLinie)/3;
 
     fclose(file);
 
@@ -143,16 +144,56 @@ int main()
             orasIncidente[count] = _orasIncident - 1;
             strazi[count] = zona;
             incidente[count] = incident - 1;
+            char snum[5];
+            itoa( incidente[count], snum, 10);
+            char soras[5];
+            itoa( orasIncidente[count], soras, 10);
+            //scriere in fisier
+            FILE *pFile2 = fopen("incidente.txt", "a");
+            fprintf(pFile2 , soras);
+            fprintf(pFile2 , "\n");
+            fprintf(pFile2 , strazi[count]);
+              fprintf(pFile2 , "\n");
+            fprintf(pFile2, snum );
+              fprintf(pFile2 , "\n");
+            fclose(pFile2);
+
             count++;
             system("pause");
         }
 
         else if (choice == 3)
         {
-            char raport[100];
-            printf("Tipul incidentului:");
-            scanf("%s", raport);
+
+            printf("Tipul incidentului:\n");
+            int incident;
+            for (int i = 0; i < nrIncidente; i++)
+            {
+                printf("%d - %s \n", i + 1, tipIncident[i]);
+            }
+
+            do
+            {
+                printf("Introdu varianta dorita: ");
+                scanf("%d", &incident);
+            } while (incident < 1 || incident > nrIncidente + 1);
+             printf("Incidente descoperite:\n");
+            for (int i = 0; i < count; i++)
+            {
+                if(incidente[i]==(incident-1)){
+                    char index[10];
+                    sprintf(index, "%d", i + 1);
+                    char descIncident[1000] = "";
+                    strcat(descIncident, index);
+                    strcat(descIncident, "-");
+                    strcat(descIncident, orase[orasIncidente[i]]);
+                    strcat(descIncident, ",");
+                    strcat(descIncident, strazi[i]);
+                    printf("%s\n", descIncident);
+                }
+            }
             system("pause");
+
         }
         else if (choice == 4)
         {
